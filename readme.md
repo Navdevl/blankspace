@@ -1,20 +1,20 @@
-## Purpose
+# Purpose
 
 This repository contains a FastAPI application that listens for incoming Sentry event payloads via a webhook. Upon receiving an event, the application processes the payload to extract relevant information such as project name, environment, message, stacktrace, tags, and browser/OS details. It then formats this information into a structured Slack message and sends a notification to a specified Slack channel. This helps in promptly alerting the team about new errors or issues detected by Sentry. 
 
-## Disclaimer
+# Disclaimer
 
 This repository contains a simple system that is not production-grade. It is a work in progress and can be improved further. Contributions and suggestions for enhancements are welcome.
 
 
-## How to Run
+# How to Run
 
-### Prerequisites
+## Prerequisites
 
 - Python 3.7+
 - `pip` (Python package installer)
 
-### Installation
+## Installation
 
 1. **Clone the repository**:
     ```sh
@@ -43,7 +43,7 @@ This repository contains a simple system that is not production-grade. It is a w
 2. **Verify the application is running**:
     Open your browser and navigate to `http://localhost:8000/docs` to see the automatically generated API documentation.
 
-### Configuration
+## Configuration
 
 ### Creating a Slack Bot and Getting the Webhook URL
 
@@ -79,9 +79,9 @@ curl -X POST "http://localhost:8000/sentry-webhook" -H "Content-Type: applicatio
 ```
 
 This should trigger a notification to your Slack channel.
-![Slack Alert Example](screenshots/slack-alert-example.png)
+![Slack Alert Example](screenshots/slack-alert-example.jpeg)
 
-### Deploying the Application on Koyeb
+# Deploying the Application on Koyeb
 
 Koyeb is a simple and efficient platform to deploy your applications. Follow these steps to deploy your FastAPI application on Koyeb:
 
