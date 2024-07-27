@@ -1,0 +1,2398 @@
+{
+  "culprit": "/api/health/crash",
+  "event": {
+    "_dsc": {
+      "environment": "production",
+      "public_key": "67a441ddda31ca7bc509390d54be5d19",
+      "release": "5e70f9873653d82d3a2394bf7797341bb1938c21",
+      "replay_id": null,
+      "sample_rate": "0.1",
+      "sampled": false,
+      "trace_id": "03b0c341-1cf6-47cb-8474-99970e23b6df",
+      "transaction": "/api/health/crash"
+    },
+    "breadcrumbs": {
+      "values": [
+        {
+          "category": "uvicorn.access",
+          "level": "info",
+          "message": "172.18.0.1:36560 - \"GET /api/health/crash?query=5e70f9873653d82d3a2394bf7797341bb1938c21 HTTP/1.1\" 500",
+          "timestamp": 1722019467.04135,
+          "type": "log"
+        }
+      ]
+    },
+    "contexts": {
+      "browser": {
+        "name": "Google Chrome",
+        "type": "browser",
+        "version": "126"
+      },
+      "client_os": {
+        "name": "macOS",
+        "type": "os"
+      },
+      "device": {
+        "brand": "Apple",
+        "family": "Mac",
+        "model": "Mac",
+        "type": "device"
+      },
+      "runtime": {
+        "build": "3.11.2 (main, Mar 23 2023, 17:12:29) [GCC 10.2.1 20210110]",
+        "name": "CPython",
+        "type": "runtime",
+        "version": "3.11.2"
+      },
+      "trace": {
+        "client_sample_rate": 0.1,
+        "data": {
+          "thread.id": "135350179485504",
+          "thread.name": "MainThread"
+        },
+        "op": "http.server",
+        "origin": "auto.http.starlette",
+        "span_id": "9021df8111b30458",
+        "status": "internal_error",
+        "trace_id": "03b0c3411cf647cb847499970e23b6df",
+        "type": "trace"
+      }
+    },
+    "culprit": "/api/health/crash",
+    "environment": "production",
+    "event_id": "2961c6b19def4280977c0f3eeb8355f4",
+    "exception": {
+      "values": [
+        {
+          "mechanism": {
+            "handled": false,
+            "type": "starlette"
+          },
+          "stacktrace": {
+            "frames": [
+              {
+                "abs_path": "/code/app/routes/api/health.py",
+                "context_line": "        raise Exception(\"This is a crash\")",
+                "filename": "app/routes/api/health.py",
+                "function": "get_crash",
+                "in_app": true,
+                "lineno": 18,
+                "module": "app.routes.api.health",
+                "post_context": [
+                  "    return {\"status\": \"ok\", \"commit\": os.environ.get(\"HEAD_COMMIT\")}"
+                ],
+                "pre_context": [
+                  "    if query == os.environ.get(\"HEAD_COMMIT\"):",
+                  "    query: str = Query(None, description=\"The query string\"),",
+                  "):",
+                  "@router.get(\"/crash\")",
+                  "async def get_crash("
+                ],
+                "vars": {
+                  "query": "'5e70f9873653d82d3a2394bf7797341bb1938c21'"
+                }
+              },
+              {
+                "abs_path": "/usr/local/lib/python3.11/site-packages/fastapi/routing.py",
+                "context_line": "                    raw_response = await run_endpoint_function(",
+                "filename": "fastapi/routing.py",
+                "function": "app",
+                "in_app": false,
+                "lineno": 278,
+                "module": "fastapi.routing",
+                "post_context": [
+                  "                            raw_response.background = background_tasks",
+                  "                        dependant=dependant, values=values, is_coroutine=is_coroutine",
+                  "                        if raw_response.background is None:",
+                  "                    )",
+                  "                    if isinstance(raw_response, Response):"
+                ],
+                "pre_context": [
+                  "                    async_exit_stack=async_exit_stack,",
+                  "                    dependency_overrides_provider=dependency_overrides_provider,",
+                  "                )",
+                  "                if not errors:",
+                  "                values, errors, background_tasks, sub_response, _ = solved_result"
+                ],
+                "vars": {
+                  "async_exit_stack": "<contextlib.AsyncExitStack object at 0x7b19a2d7f410>",
+                  "background_tasks": "None",
+                  "body": "None",
+                  "errors": [],
+                  "file_stack": "<contextlib.AsyncExitStack object at 0x7b19a2d7ca90>",
+                  "request": {
+                    "asgi": {
+                      "spec_version": "'2.4'",
+                      "version": "'3.0'"
+                    },
+                    "client": [
+                      "'172.18.0.1'",
+                      "36560"
+                    ],
+                    "headers": [
+                      [
+                        "b'1'",
+                        "b'dnt'"
+                      ],
+                      [
+                        "b'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36'",
+                        "b'user-agent'"
+                      ],
+                      [
+                        "b'\"Not/A)Brand\";v=\"8\", \"Chromium\";v=\"126\", \"Google Chrome\";v=\"126\"'",
+                        "b'sec-ch-ua'"
+                      ],
+                      [
+                        "b'__client_uat=0'",
+                        "b'cookie'"
+                      ],
+                      [
+                        "b'accept'",
+                        "b'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7'"
+                      ],
+                      [
+                        "b'accept-encoding'",
+                        "b'gzip, deflate, br, zstd'"
+                      ],
+                      [
+                        "b'accept-language'",
+                        "b'en-US,en;q=0.9,id;q=0.8'"
+                      ],
+                      [
+                        "b'cache-control'",
+                        "b'max-age=0'"
+                      ],
+                      [
+                        "b'get.mosaicimg.com'",
+                        "b'host'"
+                      ],
+                      [
+                        "b'priority'",
+                        "b'u=0, i'"
+                      ]
+                    ],
+                    "http_version": "'1.1'",
+                    "method": "'GET'",
+                    "root_path": "''",
+                    "scheme": "'http'",
+                    "server": [
+                      "'172.18.0.2'",
+                      "8000"
+                    ],
+                    "state": {},
+                    "type": "'http'"
+                  },
+                  "response": "None",
+                  "solved_result": [
+                    "<starlette.responses.Response object at 0x7b19a2d7e550>",
+                    "None",
+                    [],
+                    {
+                      "query": "'5e70f9873653d82d3a2394bf7797341bb1938c21'"
+                    },
+                    {}
+                  ],
+                  "sub_response": "<starlette.responses.Response object at 0x7b19a2d7e550>",
+                  "values": {
+                    "query": "'5e70f9873653d82d3a2394bf7797341bb1938c21'"
+                  }
+                }
+              },
+              {
+                "abs_path": "/usr/local/lib/python3.11/site-packages/fastapi/routing.py",
+                "context_line": "        return await dependant.call(**values)",
+                "filename": "fastapi/routing.py",
+                "function": "run_endpoint_function",
+                "in_app": false,
+                "lineno": 191,
+                "module": "fastapi.routing",
+                "post_context": [
+                  "        return await run_in_threadpool(dependant.call, **values)",
+                  "    else:",
+                  "",
+                  "",
+                  "def get_request_handler("
+                ],
+                "pre_context": [
+                  "    # Only called by get_request_handler. Has been split into its own function to",
+                  "    # facilitate profiling endpoints, since inner functions are harder to profile.",
+                  "    assert dependant.call is not None, \"dependant.call must be a function\"",
+                  "    if is_coroutine:",
+                  ""
+                ],
+                "vars": {
+                  "dependant": "<fastapi.dependencies.models.Dependant object at 0x7b19a3974d50>",
+                  "is_coroutine": "True",
+                  "values": {
+                    "query": "'5e70f9873653d82d3a2394bf7797341bb1938c21'"
+                  }
+                }
+              },
+              {
+                "abs_path": "/usr/local/lib/python3.11/site-packages/starlette/_exception_handler.py",
+                "context_line": "                raise exc",
+                "filename": "starlette/_exception_handler.py",
+                "function": "wrapped_app",
+                "in_app": false,
+                "lineno": 64,
+                "module": "starlette._exception_handler",
+                "post_context": [
+                  "                msg = \"Caught handled exception, but response already started.\"",
+                  "                raise RuntimeError(msg) from exc",
+                  "            if response_started:",
+                  "",
+                  ""
+                ],
+                "pre_context": [
+                  "                handler = _lookup_exception_handler(exception_handlers, exc)",
+                  "            if handler is None:",
+                  "            if handler is None:",
+                  "",
+                  ""
+                ],
+                "vars": {
+                  "app": "<fastapi.routing.APIRouter object at 0x7b19a396bfd0>",
+                  "conn": {
+                    "asgi": {
+                      "spec_version": "'2.4'",
+                      "version": "'3.0'"
+                    },
+                    "client": [
+                      "'172.18.0.1'",
+                      "36560"
+                    ],
+                    "headers": [
+                      [
+                        "b'1'",
+                        "b'dnt'"
+                      ],
+                      [
+                        "b'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36'",
+                        "b'user-agent'"
+                      ],
+                      [
+                        "b'\"Not/A)Brand\";v=\"8\", \"Chromium\";v=\"126\", \"Google Chrome\";v=\"126\"'",
+                        "b'sec-ch-ua'"
+                      ],
+                      [
+                        "b'__client_uat=0'",
+                        "b'cookie'"
+                      ],
+                      [
+                        "b'accept'",
+                        "b'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7'"
+                      ],
+                      [
+                        "b'accept-encoding'",
+                        "b'gzip, deflate, br, zstd'"
+                      ],
+                      [
+                        "b'accept-language'",
+                        "b'en-US,en;q=0.9,id;q=0.8'"
+                      ],
+                      [
+                        "b'cache-control'",
+                        "b'max-age=0'"
+                      ],
+                      [
+                        "b'get.mosaicimg.com'",
+                        "b'host'"
+                      ],
+                      [
+                        "b'priority'",
+                        "b'u=0, i'"
+                      ]
+                    ],
+                    "http_version": "'1.1'",
+                    "method": "'GET'",
+                    "root_path": "''",
+                    "scheme": "'http'",
+                    "server": [
+                      "'172.18.0.2'",
+                      "8000"
+                    ],
+                    "state": {},
+                    "type": "'http'"
+                  },
+                  "exception_handlers": {
+                    "<class 'fastapi.exceptions.RequestValidationError'>": "<function patch_exception_middleware.<locals>._sentry_middleware_init.<locals>._sentry_patched_exception_handler at 0x7b19a36d3ec0>",
+                    "<class 'fastapi.exceptions.WebSocketRequestValidationError'>": "<function patch_exception_middleware.<locals>._sentry_middleware_init.<locals>._sentry_patched_exception_handler at 0x7b19a36d3ec0>",
+                    "<class 'starlette.exceptions.HTTPException'>": "<function patch_exception_middleware.<locals>._sentry_middleware_init.<locals>._sentry_patched_exception_handler at 0x7b19a36d3ec0>",
+                    "<class 'starlette.exceptions.WebSocketException'>": "<function patch_exception_middleware.<locals>._sentry_middleware_init.<locals>._sentry_patched_exception_handler at 0x7b19a36d3ec0>"
+                  },
+                  "handler": "None",
+                  "receive": "<function _enable_span_for_middleware.<locals>._create_span_call.<locals>._sentry_receive at 0x7b19a196e200>",
+                  "response_started": "False",
+                  "scope": {
+                    "asgi": {
+                      "spec_version": "'2.4'",
+                      "version": "'3.0'"
+                    },
+                    "client": [
+                      "'172.18.0.1'",
+                      "36560"
+                    ],
+                    "headers": [
+                      [
+                        "b'..."
+                      ],
+                      [
+                        "b'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36'",
+                        "b'user-agent'"
+                      ],
+                      [
+                        "b'__client_uat=0'",
+                        "b'cookie'"
+                      ],
+                      [
+                        "b'accept'",
+                        "b'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7'"
+                      ],
+                      [
+                        "b'accept-encoding'",
+                        "b'gzip, deflate, br, zstd'"
+                      ],
+                      [
+                        "b'accept-language'",
+                        "b'en-US,en;q=0.9,id;q=0.8'"
+                      ],
+                      [
+                        "b'cache-control'",
+                        "b'max-age=0'"
+                      ],
+                      [
+                        "b'get.mosaicimg.com'",
+                        "b'host'"
+                      ]
+                    ]
+                  }
+                }
+              },
+              {
+                "abs_path": "/usr/local/lib/python3.11/site-packages/starlette/_exception_handler.py",
+                "context_line": "                raise exc",
+                "filename": "starlette/_exception_handler.py",
+                "function": "wrapped_app",
+                "in_app": false,
+                "lineno": 64,
+                "module": "starlette._exception_handler",
+                "post_context": [
+                  "                msg = \"Caught handled exception, but response already started.\"",
+                  "                raise RuntimeError(msg) from exc",
+                  "            if response_started:",
+                  "",
+                  ""
+                ],
+                "pre_context": [
+                  "                handler = _lookup_exception_handler(exception_handlers, exc)",
+                  "            if handler is None:",
+                  "            if handler is None:",
+                  "",
+                  ""
+                ],
+                "vars": {
+                  "app": "<function request_response.<locals>.app.<locals>.app at 0x7b19a196d800>",
+                  "conn": {
+                    "asgi": {
+                      "spec_version": "'2.4'",
+                      "version": "'3.0'"
+                    },
+                    "client": [
+                      "'172.18.0.1'",
+                      "36560"
+                    ],
+                    "headers": [
+                      [
+                        "b'1'",
+                        "b'dnt'"
+                      ],
+                      [
+                        "b'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36'",
+                        "b'user-agent'"
+                      ],
+                      [
+                        "b'\"Not/A)Brand\";v=\"8\", \"Chromium\";v=\"126\", \"Google Chrome\";v=\"126\"'",
+                        "b'sec-ch-ua'"
+                      ],
+                      [
+                        "b'__client_uat=0'",
+                        "b'cookie'"
+                      ],
+                      [
+                        "b'accept'",
+                        "b'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7'"
+                      ],
+                      [
+                        "b'accept-encoding'",
+                        "b'gzip, deflate, br, zstd'"
+                      ],
+                      [
+                        "b'accept-language'",
+                        "b'en-US,en;q=0.9,id;q=0.8'"
+                      ],
+                      [
+                        "b'cache-control'",
+                        "b'max-age=0'"
+                      ],
+                      [
+                        "b'get.mosaicimg.com'",
+                        "b'host'"
+                      ],
+                      [
+                        "b'priority'",
+                        "b'u=0, i'"
+                      ]
+                    ],
+                    "http_version": "'1.1'",
+                    "method": "'GET'",
+                    "root_path": "''",
+                    "scheme": "'http'",
+                    "server": [
+                      "'172.18.0.2'",
+                      "8000"
+                    ],
+                    "state": {},
+                    "type": "'http'"
+                  },
+                  "exception_handlers": {
+                    "<class 'fastapi.exceptions.RequestValidationError'>": "<function patch_exception_middleware.<locals>._sentry_middleware_init.<locals>._sentry_patched_exception_handler at 0x7b19a36d3ec0>",
+                    "<class 'fastapi.exceptions.WebSocketRequestValidationError'>": "<function patch_exception_middleware.<locals>._sentry_middleware_init.<locals>._sentry_patched_exception_handler at 0x7b19a36d3ec0>",
+                    "<class 'starlette.exceptions.HTTPException'>": "<function patch_exception_middleware.<locals>._sentry_middleware_init.<locals>._sentry_patched_exception_handler at 0x7b19a36d3ec0>",
+                    "<class 'starlette.exceptions.WebSocketException'>": "<function patch_exception_middleware.<locals>._sentry_middleware_init.<locals>._sentry_patched_exception_handler at 0x7b19a36d3ec0>"
+                  },
+                  "handler": "None",
+                  "receive": "<function _enable_span_for_middleware.<locals>._create_span_call.<locals>._sentry_receive at 0x7b19a196e200>",
+                  "response_started": "False",
+                  "scope": {
+                    "asgi": {
+                      "spec_version": "'2.4'",
+                      "version": "'3.0'"
+                    },
+                    "client": [
+                      "'172.18.0.1'",
+                      "36560"
+                    ],
+                    "headers": [
+                      [
+                        "b'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36'",
+                        "b'user-agent'"
+                      ],
+                      [
+                        "b'__cl...",
+                        "b'cookie'"
+                      ],
+                      [
+                        "b'accept'",
+                        "b'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7'"
+                      ],
+                      [
+                        "b'accept-encoding'",
+                        "b'gzip, deflate, br, zstd'"
+                      ],
+                      [
+                        "b'accept-language'",
+                        "b'en-US,en;q=0.9,id;q=0.8'"
+                      ],
+                      [
+                        "b'cache-control'",
+                        "b'max-age=0'"
+                      ],
+                      [
+                        "b'get.mosaicimg.com'",
+                        "b'host'"
+                      ]
+                    ]
+                  }
+                }
+              },
+              {
+                "abs_path": "/usr/local/lib/python3.11/site-packages/starlette/_exception_handler.py",
+                "context_line": "            await app(scope, receive, sender)",
+                "filename": "starlette/_exception_handler.py",
+                "function": "wrapped_app",
+                "in_app": false,
+                "lineno": 53,
+                "module": "starlette._exception_handler",
+                "post_context": [
+                  "                handler = status_handlers.get(exc.status_code)",
+                  "            handler = None",
+                  "            if isinstance(exc, HTTPException):",
+                  "        except Exception as exc:",
+                  ""
+                ],
+                "pre_context": [
+                  "                response_started = True",
+                  "            await send(message)",
+                  "            if message[\"type\"] == \"http.response.start\":",
+                  "        try:",
+                  ""
+                ],
+                "vars": {
+                  "app": "<fastapi.routing.APIRouter object at 0x7b19a396bfd0>",
+                  "conn": {
+                    "asgi": {
+                      "spec_version": "'2.4'",
+                      "version": "'3.0'"
+                    },
+                    "client": [
+                      "'172.18.0.1'",
+                      "36560"
+                    ],
+                    "headers": [
+                      [
+                        "b'1'",
+                        "b'dnt'"
+                      ],
+                      [
+                        "b'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36'",
+                        "b'user-agent'"
+                      ],
+                      [
+                        "b'\"Not/A)Brand\";v=\"8\", \"Chromium\";v=\"126\", \"Google Chrome\";v=\"126\"'",
+                        "b'sec-ch-ua'"
+                      ],
+                      [
+                        "b'__client_uat=0'",
+                        "b'cookie'"
+                      ],
+                      [
+                        "b'accept'",
+                        "b'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7'"
+                      ],
+                      [
+                        "b'accept-encoding'",
+                        "b'gzip, deflate, br, zstd'"
+                      ],
+                      [
+                        "b'accept-language'",
+                        "b'en-US,en;q=0.9,id;q=0.8'"
+                      ],
+                      [
+                        "b'cache-control'",
+                        "b'max-age=0'"
+                      ],
+                      [
+                        "b'get.mosaicimg.com'",
+                        "b'host'"
+                      ],
+                      [
+                        "b'priority'",
+                        "b'u=0, i'"
+                      ]
+                    ],
+                    "http_version": "'1.1'",
+                    "method": "'GET'",
+                    "root_path": "''",
+                    "scheme": "'http'",
+                    "server": [
+                      "'172.18.0.2'",
+                      "8000"
+                    ],
+                    "state": {},
+                    "type": "'http'"
+                  },
+                  "exception_handlers": {
+                    "<class 'fastapi.exceptions.RequestValidationError'>": "<function patch_exception_middleware.<locals>._sentry_middleware_init.<locals>._sentry_patched_exception_handler at 0x7b19a36d3ec0>",
+                    "<class 'fastapi.exceptions.WebSocketRequestValidationError'>": "<function patch_exception_middleware.<locals>._sentry_middleware_init.<locals>._sentry_patched_exception_handler at 0x7b19a36d3ec0>",
+                    "<class 'starlette.exceptions.HTTPException'>": "<function patch_exception_middleware.<locals>._sentry_middleware_init.<locals>._sentry_patched_exception_handler at 0x7b19a36d3ec0>",
+                    "<class 'starlette.exceptions.WebSocketException'>": "<function patch_exception_middleware.<locals>._sentry_middleware_init.<locals>._sentry_patched_exception_handler at 0x7b19a36d3ec0>"
+                  },
+                  "handler": "None",
+                  "receive": "<function _enable_span_for_middleware.<locals>._create_span_call.<locals>._sentry_receive at 0x7b19a196e200>",
+                  "response_started": "False",
+                  "scope": {
+                    "asgi": {
+                      "spec_version": "'2.4'",
+                      "version": "'3.0'"
+                    },
+                    "client": [
+                      "'172.18.0.1'",
+                      "36560"
+                    ],
+                    "headers": [
+                      [
+                        "b'..."
+                      ],
+                      [
+                        "b'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36'",
+                        "b'user-agent'"
+                      ],
+                      [
+                        "b'__client_uat=0'",
+                        "b'cookie'"
+                      ],
+                      [
+                        "b'accept'",
+                        "b'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7'"
+                      ],
+                      [
+                        "b'accept-encoding'",
+                        "b'gzip, deflate, br, zstd'"
+                      ],
+                      [
+                        "b'accept-language'",
+                        "b'en-US,en;q=0.9,id;q=0.8'"
+                      ],
+                      [
+                        "b'cache-control'",
+                        "b'max-age=0'"
+                      ],
+                      [
+                        "b'get.mosaicimg.com'",
+                        "b'host'"
+                      ]
+                    ]
+                  }
+                }
+              },
+              {
+                "abs_path": "/usr/local/lib/python3.11/site-packages/starlette/_exception_handler.py",
+                "context_line": "            await app(scope, receive, sender)",
+                "filename": "starlette/_exception_handler.py",
+                "function": "wrapped_app",
+                "in_app": false,
+                "lineno": 53,
+                "module": "starlette._exception_handler",
+                "post_context": [
+                  "                handler = status_handlers.get(exc.status_code)",
+                  "            handler = None",
+                  "            if isinstance(exc, HTTPException):",
+                  "        except Exception as exc:",
+                  ""
+                ],
+                "pre_context": [
+                  "                response_started = True",
+                  "            await send(message)",
+                  "            if message[\"type\"] == \"http.response.start\":",
+                  "        try:",
+                  ""
+                ],
+                "vars": {
+                  "app": "<function request_response.<locals>.app.<locals>.app at 0x7b19a196d800>",
+                  "conn": {
+                    "asgi": {
+                      "spec_version": "'2.4'",
+                      "version": "'3.0'"
+                    },
+                    "client": [
+                      "'172.18.0.1'",
+                      "36560"
+                    ],
+                    "headers": [
+                      [
+                        "b'1'",
+                        "b'dnt'"
+                      ],
+                      [
+                        "b'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36'",
+                        "b'user-agent'"
+                      ],
+                      [
+                        "b'\"Not/A)Brand\";v=\"8\", \"Chromium\";v=\"126\", \"Google Chrome\";v=\"126\"'",
+                        "b'sec-ch-ua'"
+                      ],
+                      [
+                        "b'__client_uat=0'",
+                        "b'cookie'"
+                      ],
+                      [
+                        "b'accept'",
+                        "b'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7'"
+                      ],
+                      [
+                        "b'accept-encoding'",
+                        "b'gzip, deflate, br, zstd'"
+                      ],
+                      [
+                        "b'accept-language'",
+                        "b'en-US,en;q=0.9,id;q=0.8'"
+                      ],
+                      [
+                        "b'cache-control'",
+                        "b'max-age=0'"
+                      ],
+                      [
+                        "b'get.mosaicimg.com'",
+                        "b'host'"
+                      ],
+                      [
+                        "b'priority'",
+                        "b'u=0, i'"
+                      ]
+                    ],
+                    "http_version": "'1.1'",
+                    "method": "'GET'",
+                    "root_path": "''",
+                    "scheme": "'http'",
+                    "server": [
+                      "'172.18.0.2'",
+                      "8000"
+                    ],
+                    "state": {},
+                    "type": "'http'"
+                  },
+                  "exception_handlers": {
+                    "<class 'fastapi.exceptions.RequestValidationError'>": "<function patch_exception_middleware.<locals>._sentry_middleware_init.<locals>._sentry_patched_exception_handler at 0x7b19a36d3ec0>",
+                    "<class 'fastapi.exceptions.WebSocketRequestValidationError'>": "<function patch_exception_middleware.<locals>._sentry_middleware_init.<locals>._sentry_patched_exception_handler at 0x7b19a36d3ec0>",
+                    "<class 'starlette.exceptions.HTTPException'>": "<function patch_exception_middleware.<locals>._sentry_middleware_init.<locals>._sentry_patched_exception_handler at 0x7b19a36d3ec0>",
+                    "<class 'starlette.exceptions.WebSocketException'>": "<function patch_exception_middleware.<locals>._sentry_middleware_init.<locals>._sentry_patched_exception_handler at 0x7b19a36d3ec0>"
+                  },
+                  "handler": "None",
+                  "receive": "<function _enable_span_for_middleware.<locals>._create_span_call.<locals>._sentry_receive at 0x7b19a196e200>",
+                  "response_started": "False",
+                  "scope": {
+                    "asgi": {
+                      "spec_version": "'2.4'",
+                      "version": "'3.0'"
+                    },
+                    "client": [
+                      "'172.18.0.1'",
+                      "36560"
+                    ],
+                    "headers": [
+                      [
+                        "b'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36'",
+                        "b'user-agent'"
+                      ],
+                      [
+                        "b'__cl...",
+                        "b'cookie'"
+                      ],
+                      [
+                        "b'accept'",
+                        "b'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7'"
+                      ],
+                      [
+                        "b'accept-encoding'",
+                        "b'gzip, deflate, br, zstd'"
+                      ],
+                      [
+                        "b'accept-language'",
+                        "b'en-US,en;q=0.9,id;q=0.8'"
+                      ],
+                      [
+                        "b'cache-control'",
+                        "b'max-age=0'"
+                      ],
+                      [
+                        "b'get.mosaicimg.com'",
+                        "b'host'"
+                      ]
+                    ]
+                  }
+                }
+              },
+              {
+                "abs_path": "/usr/local/lib/python3.11/site-packages/starlette/applications.py",
+                "context_line": "        await self.middleware_stack(scope, receive, send)",
+                "filename": "starlette/applications.py",
+                "function": "__call__",
+                "in_app": false,
+                "lineno": 123,
+                "module": "starlette.applications",
+                "post_context": [
+                  "        return self.router.on_event(event_type)  # pragma: nocover",
+                  "    def mount(self, path: str, app: ASGIApp, name: str | None = None) -> None:",
+                  "    def on_event(self, event_type: str) -> typing.Callable:  # type: ignore[type-arg]",
+                  "",
+                  ""
+                ],
+                "pre_context": [
+                  "            self.middleware_stack = self.build_middleware_stack()",
+                  "        if self.middleware_stack is None:",
+                  "        scope[\"app\"] = self",
+                  "    async def __call__(self, scope: Scope, receive: Receive, send: Send) -> None:",
+                  ""
+                ],
+                "vars": {
+                  "receive": "<bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7b19a2d98350>>",
+                  "scope": {
+                    "asgi": {
+                      "spec_version": "'2.4'",
+                      "version": "'3.0'"
+                    },
+                    "client": [
+                      "'172.18.0.1'",
+                      "36560"
+                    ],
+                    "headers": [
+                      [
+                        "b'1'",
+                        "b'dnt'"
+                      ],
+                      [
+                        "b'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36'",
+                        "b'user-agent'"
+                      ],
+                      [
+                        "b'\"Not/A)Brand\";v=\"8\", \"Chromium\";v=\"126\", \"Google Chrome\";v=\"126\"'",
+                        "b'sec-ch-ua'"
+                      ],
+                      [
+                        "b'__client_uat=0'",
+                        "b'cookie'"
+                      ],
+                      [
+                        "b'accept'",
+                        "b'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7'"
+                      ],
+                      [
+                        "b'accept-encoding'",
+                        "b'gzip, deflate, br, zstd'"
+                      ],
+                      [
+                        "b'accept-language'",
+                        "b'en-US,en;q=0.9,id;q=0.8'"
+                      ],
+                      [
+                        "b'cache-control'",
+                        "b'max-age=0'"
+                      ],
+                      [
+                        "b'get.mosaicimg.com'",
+                        "b'host'"
+                      ],
+                      [
+                        "b'priority'",
+                        "b'u=0, i'"
+                      ]
+                    ],
+                    "http_version": "'1.1'",
+                    "method": "'GET'",
+                    "root_path": "''",
+                    "scheme": "'http'",
+                    "server": [
+                      "'172.18.0.2'",
+                      "8000"
+                    ],
+                    "state": {},
+                    "type": "'http'"
+                  },
+                  "self": "<fastapi.applications.FastAPI object at 0x7b19a9a62790>",
+                  "send": "<function SentryAsgiMiddleware._run_app.<locals>._sentry_wrapped_send at 0x7b19a196f060>"
+                }
+              },
+              {
+                "abs_path": "/usr/local/lib/python3.11/site-packages/starlette/middleware/cors.py",
+                "context_line": "            await self.app(scope, receive, send)",
+                "filename": "starlette/middleware/cors.py",
+                "function": "__call__",
+                "in_app": false,
+                "lineno": 85,
+                "module": "starlette.middleware.cors",
+                "post_context": [
+                  "            await response(scope, receive, send)",
+                  "            response = self.preflight_response(request_headers=headers)",
+                  "            return",
+                  "        if method == \"OPTIONS\" and \"access-control-request-method\" in headers:",
+                  ""
+                ],
+                "pre_context": [
+                  "        headers = Headers(scope=scope)",
+                  "        if origin is None:",
+                  "        method = scope[\"method\"]",
+                  "        origin = headers.get(\"origin\")",
+                  ""
+                ],
+                "vars": {
+                  "headers": {
+                    "accept": "'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7'",
+                    "accept-encoding": "'gzip, deflate, br, zstd'",
+                    "accept-language": "'en-US,en;q=0.9,id;q=0.8'",
+                    "cache-control": "'max-age=0'",
+                    "cookie": "'__client_uat=0'",
+                    "dnt": "'1'",
+                    "host": "'get.mosaicimg.com'",
+                    "priority": "'u=0, i'",
+                    "sec-ch-ua": "'\"Not/A)Brand\";v=\"8\", \"Chromium\";v=\"126\", \"Google Chrome\";v=\"126\"'",
+                    "user-agent": "'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36'"
+                  },
+                  "method": "'GET'",
+                  "origin": "None",
+                  "receive": "<function _enable_span_for_middleware.<locals>._create_span_call.<locals>._sentry_receive at 0x7b19a196e200>",
+                  "scope": {
+                    "asgi": {
+                      "spec_version": "'2.4'",
+                      "version": "'3.0'"
+                    },
+                    "client": [
+                      "'172.18.0.1'",
+                      "36560"
+                    ],
+                    "headers": [
+                      [
+                        "b'1'",
+                        "b'dnt'"
+                      ],
+                      [
+                        "b'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36'",
+                        "b'user-agent'"
+                      ],
+                      [
+                        "b'\"Not/A)Brand\";v=\"8\", \"Chromium\";v=\"126\", \"Google Chrome\";v=\"126\"'",
+                        "b'sec-ch-ua'"
+                      ],
+                      [
+                        "b'__client_uat=0'",
+                        "b'cookie'"
+                      ],
+                      [
+                        "b'accept'",
+                        "b'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7'"
+                      ],
+                      [
+                        "b'accept-encoding'",
+                        "b'gzip, deflate, br, zstd'"
+                      ],
+                      [
+                        "b'accept-language'",
+                        "b'en-US,en;q=0.9,id;q=0.8'"
+                      ],
+                      [
+                        "b'cache-control'",
+                        "b'max-age=0'"
+                      ],
+                      [
+                        "b'get.mosaicimg.com'",
+                        "b'host'"
+                      ],
+                      [
+                        "b'priority'",
+                        "b'u=0, i'"
+                      ]
+                    ],
+                    "http_version": "'1.1'",
+                    "method": "'GET'",
+                    "root_path": "''",
+                    "scheme": "'http'",
+                    "server": [
+                      "'172.18.0.2'",
+                      "8000"
+                    ],
+                    "state": {},
+                    "type": "'http'"
+                  },
+                  "self": "<starlette.middleware.cors.CORSMiddleware object at 0x7b19a36bf4d0>",
+                  "send": "<function _enable_span_for_middleware.<locals>._create_span_call.<locals>._sentry_send at 0x7b19a196d760>"
+                }
+              },
+              {
+                "abs_path": "/usr/local/lib/python3.11/site-packages/starlette/middleware/errors.py",
+                "context_line": "            await self.app(scope, receive, _send)",
+                "filename": "starlette/middleware/errors.py",
+                "function": "__call__",
+                "in_app": false,
+                "lineno": 164,
+                "module": "starlette.middleware.errors",
+                "post_context": [
+                  "                # In debug mode, return traceback responses.",
+                  "                response = self.debug_response(request, exc)",
+                  "            if self.debug:",
+                  "            request = Request(scope)",
+                  "        except Exception as exc:"
+                ],
+                "pre_context": [
+                  "                response_started = True",
+                  "            await send(message)",
+                  "            if message[\"type\"] == \"http.response.start\":",
+                  "        try:",
+                  ""
+                ],
+                "vars": {
+                  "_send": "<function ServerErrorMiddleware.__call__.<locals>._send at 0x7b19a196e3e0>",
+                  "receive": "<function _enable_span_for_middleware.<locals>._create_span_call.<locals>._sentry_receive at 0x7b19a196e200>",
+                  "request": {
+                    "asgi": {
+                      "spec_version": "'2.4'",
+                      "version": "'3.0'"
+                    },
+                    "client": [
+                      "'172.18.0.1'",
+                      "36560"
+                    ],
+                    "headers": [
+                      [
+                        "b'1'",
+                        "b'dnt'"
+                      ],
+                      [
+                        "b'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36'",
+                        "b'user-agent'"
+                      ],
+                      [
+                        "b'\"Not/A)Brand\";v=\"8\", \"Chromium\";v=\"126\", \"Google Chrome\";v=\"126\"'",
+                        "b'sec-ch-ua'"
+                      ],
+                      [
+                        "b'__client_uat=0'",
+                        "b'cookie'"
+                      ],
+                      [
+                        "b'accept'",
+                        "b'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7'"
+                      ],
+                      [
+                        "b'accept-encoding'",
+                        "b'gzip, deflate, br, zstd'"
+                      ],
+                      [
+                        "b'accept-language'",
+                        "b'en-US,en;q=0.9,id;q=0.8'"
+                      ],
+                      [
+                        "b'cache-control'",
+                        "b'max-age=0'"
+                      ],
+                      [
+                        "b'get.mosaicimg.com'",
+                        "b'host'"
+                      ],
+                      [
+                        "b'priority'",
+                        "b'u=0, i'"
+                      ]
+                    ],
+                    "http_version": "'1.1'",
+                    "method": "'GET'",
+                    "root_path": "''",
+                    "scheme": "'http'",
+                    "server": [
+                      "'172.18.0.2'",
+                      "8000"
+                    ],
+                    "state": {},
+                    "type": "'http'"
+                  },
+                  "response": "<starlette.responses.PlainTextResponse object at 0x7b19a2d7fa10>",
+                  "response_started": "False",
+                  "scope": {
+                    "asgi": {
+                      "spec_version": "'2.4'",
+                      "version": "'3.0'"
+                    },
+                    "client": [
+                      "'172.18.0.1'",
+                      "36560"
+                    ],
+                    "headers": [
+                      [
+                        "b'1'",
+                        "b'dnt'"
+                      ],
+                      [
+                        "b'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36'",
+                        "b'user-agent'"
+                      ],
+                      [
+                        "b'\"Not/A)Brand\";v=\"8\", \"Chromium\";v=\"126\", \"Google Chrome\";v=\"126\"'",
+                        "b'sec-ch-ua'"
+                      ],
+                      [
+                        "b'__client_uat=0'",
+                        "b'cookie'"
+                      ],
+                      [
+                        "b'accept'",
+                        "b'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7'"
+                      ],
+                      [
+                        "b'accept-encoding'",
+                        "b'gzip, deflate, br, zstd'"
+                      ],
+                      [
+                        "b'accept-language'",
+                        "b'en-US,en;q=0.9,id;q=0.8'"
+                      ],
+                      [
+                        "b'cache-control'",
+                        "b'max-age=0'"
+                      ],
+                      [
+                        "b'get.mosaicimg.com'",
+                        "b'host'"
+                      ],
+                      [
+                        "b'priority'",
+                        "b'u=0, i'"
+                      ]
+                    ],
+                    "http_version": "'1.1'",
+                    "method": "'GET'",
+                    "root_path": "''",
+                    "scheme": "'http'",
+                    "server": [
+                      "'172.18.0.2'",
+                      "8000"
+                    ],
+                    "state": {},
+                    "type": "'http'"
+                  },
+                  "self": "<starlette.middleware.errors.ServerErrorMiddleware object at 0x7b19a36bf590>",
+                  "send": "<function _enable_span_for_middleware.<locals>._create_span_call.<locals>._sentry_send at 0x7b19a196e340>"
+                }
+              },
+              {
+                "abs_path": "/usr/local/lib/python3.11/site-packages/starlette/middleware/errors.py",
+                "context_line": "            raise exc",
+                "filename": "starlette/middleware/errors.py",
+                "function": "__call__",
+                "in_app": false,
+                "lineno": 186,
+                "module": "starlette.middleware.errors",
+                "post_context": [
+                  "        self, index: int, line: str, frame_lineno: int, frame_index: int",
+                  "        values = {",
+                  "    ) -> str:",
+                  "    def format_line(",
+                  ""
+                ],
+                "pre_context": [
+                  "                await response(scope, receive, send)",
+                  "            # This allows servers to log the error, or allows test clients",
+                  "            # We always continue to raise the exception.",
+                  "            # to optionally raise the error within the test case.",
+                  ""
+                ],
+                "vars": {
+                  "_send": "<function ServerErrorMiddleware.__call__.<locals>._send at 0x7b19a196e3e0>",
+                  "receive": "<function _enable_span_for_middleware.<locals>._create_span_call.<locals>._sentry_receive at 0x7b19a196e200>",
+                  "request": {
+                    "asgi": {
+                      "spec_version": "'2.4'",
+                      "version": "'3.0'"
+                    },
+                    "client": [
+                      "'172.18.0.1'",
+                      "36560"
+                    ],
+                    "headers": [
+                      [
+                        "b'1'",
+                        "b'dnt'"
+                      ],
+                      [
+                        "b'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36'",
+                        "b'user-agent'"
+                      ],
+                      [
+                        "b'\"Not/A)Brand\";v=\"8\", \"Chromium\";v=\"126\", \"Google Chrome\";v=\"126\"'",
+                        "b'sec-ch-ua'"
+                      ],
+                      [
+                        "b'__client_uat=0'",
+                        "b'cookie'"
+                      ],
+                      [
+                        "b'accept'",
+                        "b'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7'"
+                      ],
+                      [
+                        "b'accept-encoding'",
+                        "b'gzip, deflate, br, zstd'"
+                      ],
+                      [
+                        "b'accept-language'",
+                        "b'en-US,en;q=0.9,id;q=0.8'"
+                      ],
+                      [
+                        "b'cache-control'",
+                        "b'max-age=0'"
+                      ],
+                      [
+                        "b'get.mosaicimg.com'",
+                        "b'host'"
+                      ],
+                      [
+                        "b'priority'",
+                        "b'u=0, i'"
+                      ]
+                    ],
+                    "http_version": "'1.1'",
+                    "method": "'GET'",
+                    "root_path": "''",
+                    "scheme": "'http'",
+                    "server": [
+                      "'172.18.0.2'",
+                      "8000"
+                    ],
+                    "state": {},
+                    "type": "'http'"
+                  },
+                  "response": "<starlette.responses.PlainTextResponse object at 0x7b19a2d7fa10>",
+                  "response_started": "False",
+                  "scope": {
+                    "asgi": {
+                      "spec_version": "'2.4'",
+                      "version": "'3.0'"
+                    },
+                    "client": [
+                      "'172.18.0.1'",
+                      "36560"
+                    ],
+                    "headers": [
+                      [
+                        "b'1'",
+                        "b'dnt'"
+                      ],
+                      [
+                        "b'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36'",
+                        "b'user-agent'"
+                      ],
+                      [
+                        "b'\"Not/A)Brand\";v=\"8\", \"Chromium\";v=\"126\", \"Google Chrome\";v=\"126\"'",
+                        "b'sec-ch-ua'"
+                      ],
+                      [
+                        "b'__client_uat=0'",
+                        "b'cookie'"
+                      ],
+                      [
+                        "b'accept'",
+                        "b'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7'"
+                      ],
+                      [
+                        "b'accept-encoding'",
+                        "b'gzip, deflate, br, zstd'"
+                      ],
+                      [
+                        "b'accept-language'",
+                        "b'en-US,en;q=0.9,id;q=0.8'"
+                      ],
+                      [
+                        "b'cache-control'",
+                        "b'max-age=0'"
+                      ],
+                      [
+                        "b'get.mosaicimg.com'",
+                        "b'host'"
+                      ],
+                      [
+                        "b'priority'",
+                        "b'u=0, i'"
+                      ]
+                    ],
+                    "http_version": "'1.1'",
+                    "method": "'GET'",
+                    "root_path": "''",
+                    "scheme": "'http'",
+                    "server": [
+                      "'172.18.0.2'",
+                      "8000"
+                    ],
+                    "state": {},
+                    "type": "'http'"
+                  },
+                  "self": "<starlette.middleware.errors.ServerErrorMiddleware object at 0x7b19a36bf590>",
+                  "send": "<function _enable_span_for_middleware.<locals>._create_span_call.<locals>._sentry_send at 0x7b19a196e340>"
+                }
+              },
+              {
+                "abs_path": "/usr/local/lib/python3.11/site-packages/starlette/middleware/exceptions.py",
+                "context_line": "        await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)",
+                "filename": "starlette/middleware/exceptions.py",
+                "function": "__call__",
+                "in_app": false,
+                "lineno": 65,
+                "module": "starlette.middleware.exceptions",
+                "post_context": [
+                  "            return Response(status_code=exc.status_code, headers=exc.headers)",
+                  "        assert isinstance(exc, HTTPException)",
+                  "        if exc.status_code in {204, 304}:",
+                  "    def http_exception(self, request: Request, exc: Exception) -> Response:",
+                  ""
+                ],
+                "pre_context": [
+                  "            conn = Request(scope, receive, send)",
+                  "            conn = WebSocket(scope, receive, send)",
+                  "        else:",
+                  "        if scope[\"type\"] == \"http\":",
+                  ""
+                ],
+                "vars": {
+                  "conn": {
+                    "asgi": {
+                      "spec_version": "'2.4'",
+                      "version": "'3.0'"
+                    },
+                    "client": [
+                      "'172.18.0.1'",
+                      "36560"
+                    ],
+                    "headers": [
+                      [
+                        "b'1'",
+                        "b'dnt'"
+                      ],
+                      [
+                        "b'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36'",
+                        "b'user-agent'"
+                      ],
+                      [
+                        "b'\"Not/A)Brand\";v=\"8\", \"Chromium\";v=\"126\", \"Google Chrome\";v=\"126\"'",
+                        "b'sec-ch-ua'"
+                      ],
+                      [
+                        "b'__client_uat=0'",
+                        "b'cookie'"
+                      ],
+                      [
+                        "b'accept'",
+                        "b'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7'"
+                      ],
+                      [
+                        "b'accept-encoding'",
+                        "b'gzip, deflate, br, zstd'"
+                      ],
+                      [
+                        "b'accept-language'",
+                        "b'en-US,en;q=0.9,id;q=0.8'"
+                      ],
+                      [
+                        "b'cache-control'",
+                        "b'max-age=0'"
+                      ],
+                      [
+                        "b'get.mosaicimg.com'",
+                        "b'host'"
+                      ],
+                      [
+                        "b'priority'",
+                        "b'u=0, i'"
+                      ]
+                    ],
+                    "http_version": "'1.1'",
+                    "method": "'GET'",
+                    "root_path": "''",
+                    "scheme": "'http'",
+                    "server": [
+                      "'172.18.0.2'",
+                      "8000"
+                    ],
+                    "state": {},
+                    "type": "'http'"
+                  },
+                  "receive": "<function _enable_span_for_middleware.<locals>._create_span_call.<locals>._sentry_receive at 0x7b19a196e200>",
+                  "scope": {
+                    "asgi": {
+                      "spec_version": "'2.4'",
+                      "version": "'3.0'"
+                    },
+                    "client": [
+                      "'172.18.0.1'",
+                      "36560"
+                    ],
+                    "headers": [
+                      [
+                        "b'1'",
+                        "b'dnt'"
+                      ],
+                      [
+                        "b'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36'",
+                        "b'user-agent'"
+                      ],
+                      [
+                        "b'\"Not/A)Brand\";v=\"8\", \"Chromium\";v=\"126\", \"Google Chrome\";v=\"126\"'",
+                        "b'sec-ch-ua'"
+                      ],
+                      [
+                        "b'__client_uat=0'",
+                        "b'cookie'"
+                      ],
+                      [
+                        "b'accept'",
+                        "b'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7'"
+                      ],
+                      [
+                        "b'accept-encoding'",
+                        "b'gzip, deflate, br, zstd'"
+                      ],
+                      [
+                        "b'accept-language'",
+                        "b'en-US,en;q=0.9,id;q=0.8'"
+                      ],
+                      [
+                        "b'cache-control'",
+                        "b'max-age=0'"
+                      ],
+                      [
+                        "b'get.mosaicimg.com'",
+                        "b'host'"
+                      ],
+                      [
+                        "b'priority'",
+                        "b'u=0, i'"
+                      ]
+                    ],
+                    "http_version": "'1.1'",
+                    "method": "'GET'",
+                    "root_path": "''",
+                    "scheme": "'http'",
+                    "server": [
+                      "'172.18.0.2'",
+                      "8000"
+                    ],
+                    "state": {},
+                    "type": "'http'"
+                  },
+                  "self": "<starlette.middleware.exceptions.ExceptionMiddleware object at 0x7b19a36bf1d0>",
+                  "send": "<function _enable_span_for_middleware.<locals>._create_span_call.<locals>._sentry_send at 0x7b19a196d760>"
+                }
+              },
+              {
+                "abs_path": "/usr/local/lib/python3.11/site-packages/starlette/routing.py",
+                "context_line": "                await route.handle(scope, receive, send)",
+                "filename": "starlette/routing.py",
+                "function": "app",
+                "in_app": false,
+                "lineno": 776,
+                "module": "starlette.routing",
+                "post_context": [
+                  "                partial = route",
+                  "                partial_scope = child_scope",
+                  "                return",
+                  "            elif match == Match.PARTIAL and partial is None:",
+                  ""
+                ],
+                "pre_context": [
+                  "                scope.update(child_scope)",
+                  "            # Determine if any route matches the incoming scope,",
+                  "            # and hand over to the matching route if found.",
+                  "            if match == Match.FULL:",
+                  "            match, child_scope = route.matches(scope)"
+                ],
+                "vars": {
+                  "child_scope": {
+                    "endpoint": "<function get_crash at 0x7b19a8ddc9a0>",
+                    "path_params": {},
+                    "route": "APIRoute(path='/api/health/crash', name='get_crash', methods=['GET'])"
+                  },
+                  "match": "<Match.FULL: 2>",
+                  "partial": "None",
+                  "receive": "<function _enable_span_for_middleware.<locals>._create_span_call.<locals>._sentry_receive at 0x7b19a196e200>",
+                  "route": "APIRoute(path='/api/health/crash', name='get_crash', methods=['GET'])",
+                  "scope": {
+                    "asgi": {
+                      "spec_version": "'2.4'",
+                      "version": "'3.0'"
+                    },
+                    "client": [
+                      "'172.18.0.1'",
+                      "36560"
+                    ],
+                    "headers": [
+                      [
+                        "b'1'",
+                        "b'dnt'"
+                      ],
+                      [
+                        "b'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36'",
+                        "b'user-agent'"
+                      ],
+                      [
+                        "b'\"Not/A)Brand\";v=\"8\", \"Chromium\";v=\"126\", \"Google Chrome\";v=\"126\"'",
+                        "b'sec-ch-ua'"
+                      ],
+                      [
+                        "b'__client_uat=0'",
+                        "b'cookie'"
+                      ],
+                      [
+                        "b'accept'",
+                        "b'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7'"
+                      ],
+                      [
+                        "b'accept-encoding'",
+                        "b'gzip, deflate, br, zstd'"
+                      ],
+                      [
+                        "b'accept-language'",
+                        "b'en-US,en;q=0.9,id;q=0.8'"
+                      ],
+                      [
+                        "b'cache-control'",
+                        "b'max-age=0'"
+                      ],
+                      [
+                        "b'get.mosaicimg.com'",
+                        "b'host'"
+                      ],
+                      [
+                        "b'priority'",
+                        "b'u=0, i'"
+                      ]
+                    ],
+                    "http_version": "'1.1'",
+                    "method": "'GET'",
+                    "root_path": "''",
+                    "scheme": "'http'",
+                    "server": [
+                      "'172.18.0.2'",
+                      "8000"
+                    ],
+                    "state": {},
+                    "type": "'http'"
+                  },
+                  "self": "<fastapi.routing.APIRouter object at 0x7b19a396bfd0>",
+                  "send": "<function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x7b19a196d580>"
+                }
+              },
+              {
+                "abs_path": "/usr/local/lib/python3.11/site-packages/starlette/routing.py",
+                "context_line": "                response = await func(request)",
+                "filename": "starlette/routing.py",
+                "function": "app",
+                "in_app": false,
+                "lineno": 72,
+                "module": "starlette.routing",
+                "post_context": [
+                  "                response = await run_in_threadpool(func, request)",
+                  "            await response(scope, receive, send)",
+                  "            else:",
+                  "        await wrap_app_handling_exceptions(app, request)(scope, receive, send)",
+                  ""
+                ],
+                "pre_context": [
+                  "            if is_async_callable(func):",
+                  "        async def app(scope: Scope, receive: Receive, send: Send) -> None:",
+                  "        request = Request(scope, receive, send)",
+                  "    async def app(scope: Scope, receive: Receive, send: Send) -> None:",
+                  ""
+                ],
+                "vars": {
+                  "func": "<function patch_get_request_handler.<locals>._sentry_get_request_handler.<locals>._sentry_app at 0x7b19a3973a60>",
+                  "receive": "<function _enable_span_for_middleware.<locals>._create_span_call.<locals>._sentry_receive at 0x7b19a196e200>",
+                  "request": {
+                    "asgi": {
+                      "spec_version": "'2.4'",
+                      "version": "'3.0'"
+                    },
+                    "client": [
+                      "'172.18.0.1'",
+                      "36560"
+                    ],
+                    "headers": [
+                      [
+                        "b'1'",
+                        "b'dnt'"
+                      ],
+                      [
+                        "b'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36'",
+                        "b'user-agent'"
+                      ],
+                      [
+                        "b'\"Not/A)Brand\";v=\"8\", \"Chromium\";v=\"126\", \"Google Chrome\";v=\"126\"'",
+                        "b'sec-ch-ua'"
+                      ],
+                      [
+                        "b'__client_uat=0'",
+                        "b'cookie'"
+                      ],
+                      [
+                        "b'accept'",
+                        "b'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7'"
+                      ],
+                      [
+                        "b'accept-encoding'",
+                        "b'gzip, deflate, br, zstd'"
+                      ],
+                      [
+                        "b'accept-language'",
+                        "b'en-US,en;q=0.9,id;q=0.8'"
+                      ],
+                      [
+                        "b'cache-control'",
+                        "b'max-age=0'"
+                      ],
+                      [
+                        "b'get.mosaicimg.com'",
+                        "b'host'"
+                      ],
+                      [
+                        "b'priority'",
+                        "b'u=0, i'"
+                      ]
+                    ],
+                    "http_version": "'1.1'",
+                    "method": "'GET'",
+                    "root_path": "''",
+                    "scheme": "'http'",
+                    "server": [
+                      "'172.18.0.2'",
+                      "8000"
+                    ],
+                    "state": {},
+                    "type": "'http'"
+                  },
+                  "scope": {
+                    "asgi": {
+                      "spec_version": "'2.4'",
+                      "version": "'3.0'"
+                    },
+                    "client": [
+                      "'172.18.0.1'",
+                      "36560"
+                    ],
+                    "headers": [
+                      [
+                        "b'1'",
+                        "b'dnt'"
+                      ],
+                      [
+                        "b'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36'",
+                        "b'user-agent'"
+                      ],
+                      [
+                        "b'\"Not/A)Brand\";v=\"8\", \"Chromium\";v=\"126\", \"Google Chrome\";v=\"126\"'",
+                        "b'sec-ch-ua'"
+                      ],
+                      [
+                        "b'__client_uat=0'",
+                        "b'cookie'"
+                      ],
+                      [
+                        "b'accept'",
+                        "b'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7'"
+                      ],
+                      [
+                        "b'accept-encoding'",
+                        "b'gzip, deflate, br, zstd'"
+                      ],
+                      [
+                        "b'accept-language'",
+                        "b'en-US,en;q=0.9,id;q=0.8'"
+                      ],
+                      [
+                        "b'cache-control'",
+                        "b'max-age=0'"
+                      ],
+                      [
+                        "b'get.mosaicimg.com'",
+                        "b'host'"
+                      ],
+                      [
+                        "b'priority'",
+                        "b'u=0, i'"
+                      ]
+                    ],
+                    "http_version": "'1.1'",
+                    "method": "'GET'",
+                    "root_path": "''",
+                    "scheme": "'http'",
+                    "server": [
+                      "'172.18.0.2'",
+                      "8000"
+                    ],
+                    "state": {},
+                    "type": "'http'"
+                  },
+                  "send": "<function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x7b19a196cae0>"
+                }
+              },
+              {
+                "abs_path": "/usr/local/lib/python3.11/site-packages/starlette/routing.py",
+                "context_line": "            await self.app(scope, receive, send)",
+                "filename": "starlette/routing.py",
+                "function": "handle",
+                "in_app": false,
+                "lineno": 297,
+                "module": "starlette.routing",
+                "post_context": [
+                  "            and self.path == other.path",
+                  "            isinstance(other, Route)",
+                  "        return (",
+                  "    def __eq__(self, other: typing.Any) -> bool:",
+                  ""
+                ],
+                "pre_context": [
+                  "                    \"Method Not Allowed\", status_code=405, headers=headers",
+                  "                )",
+                  "                response = PlainTextResponse(",
+                  "            await response(scope, receive, send)",
+                  "        else:"
+                ],
+                "vars": {
+                  "receive": "<function _enable_span_for_middleware.<locals>._create_span_call.<locals>._sentry_receive at 0x7b19a196e200>",
+                  "scope": {
+                    "asgi": {
+                      "spec_version": "'2.4'",
+                      "version": "'3.0'"
+                    },
+                    "client": [
+                      "'172.18.0.1'",
+                      "36560"
+                    ],
+                    "headers": [
+                      [
+                        "b'1'",
+                        "b'dnt'"
+                      ],
+                      [
+                        "b'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36'",
+                        "b'user-agent'"
+                      ],
+                      [
+                        "b'\"Not/A)Brand\";v=\"8\", \"Chromium\";v=\"126\", \"Google Chrome\";v=\"126\"'",
+                        "b'sec-ch-ua'"
+                      ],
+                      [
+                        "b'__client_uat=0'",
+                        "b'cookie'"
+                      ],
+                      [
+                        "b'accept'",
+                        "b'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7'"
+                      ],
+                      [
+                        "b'accept-encoding'",
+                        "b'gzip, deflate, br, zstd'"
+                      ],
+                      [
+                        "b'accept-language'",
+                        "b'en-US,en;q=0.9,id;q=0.8'"
+                      ],
+                      [
+                        "b'cache-control'",
+                        "b'max-age=0'"
+                      ],
+                      [
+                        "b'get.mosaicimg.com'",
+                        "b'host'"
+                      ],
+                      [
+                        "b'priority'",
+                        "b'u=0, i'"
+                      ]
+                    ],
+                    "http_version": "'1.1'",
+                    "method": "'GET'",
+                    "root_path": "''",
+                    "scheme": "'http'",
+                    "server": [
+                      "'172.18.0.2'",
+                      "8000"
+                    ],
+                    "state": {},
+                    "type": "'http'"
+                  },
+                  "self": "APIRoute(path='/api/health/crash', name='get_crash', methods=['GET'])",
+                  "send": "<function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x7b19a196d580>"
+                }
+              },
+              {
+                "abs_path": "/usr/local/lib/python3.11/site-packages/starlette/routing.py",
+                "context_line": "        await self.middleware_stack(scope, receive, send)",
+                "filename": "starlette/routing.py",
+                "function": "__call__",
+                "in_app": false,
+                "lineno": 756,
+                "module": "starlette.routing",
+                "post_context": [
+                  "        assert scope[\"type\"] in (\"http\", \"websocket\", \"lifespan\")",
+                  "        if \"router\" not in scope:",
+                  "    async def app(self, scope: Scope, receive: Receive, send: Send) -> None:",
+                  "",
+                  ""
+                ],
+                "pre_context": [
+                  "        The main entry point to the Router class.",
+                  "        \"\"\"",
+                  "        \"\"\"",
+                  "    async def __call__(self, scope: Scope, receive: Receive, send: Send) -> None:",
+                  ""
+                ],
+                "vars": {
+                  "receive": "<function _enable_span_for_middleware.<locals>._create_span_call.<locals>._sentry_receive at 0x7b19a196e200>",
+                  "scope": {
+                    "asgi": {
+                      "spec_version": "'2.4'",
+                      "version": "'3.0'"
+                    },
+                    "client": [
+                      "'172.18.0.1'",
+                      "36560"
+                    ],
+                    "headers": [
+                      [
+                        "b'1'",
+                        "b'dnt'"
+                      ],
+                      [
+                        "b'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36'",
+                        "b'user-agent'"
+                      ],
+                      [
+                        "b'\"Not/A)Brand\";v=\"8\", \"Chromium\";v=\"126\", \"Google Chrome\";v=\"126\"'",
+                        "b'sec-ch-ua'"
+                      ],
+                      [
+                        "b'__client_uat=0'",
+                        "b'cookie'"
+                      ],
+                      [
+                        "b'accept'",
+                        "b'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7'"
+                      ],
+                      [
+                        "b'accept-encoding'",
+                        "b'gzip, deflate, br, zstd'"
+                      ],
+                      [
+                        "b'accept-language'",
+                        "b'en-US,en;q=0.9,id;q=0.8'"
+                      ],
+                      [
+                        "b'cache-control'",
+                        "b'max-age=0'"
+                      ],
+                      [
+                        "b'get.mosaicimg.com'",
+                        "b'host'"
+                      ],
+                      [
+                        "b'priority'",
+                        "b'u=0, i'"
+                      ]
+                    ],
+                    "http_version": "'1.1'",
+                    "method": "'GET'",
+                    "root_path": "''",
+                    "scheme": "'http'",
+                    "server": [
+                      "'172.18.0.2'",
+                      "8000"
+                    ],
+                    "state": {},
+                    "type": "'http'"
+                  },
+                  "self": "<fastapi.routing.APIRouter object at 0x7b19a396bfd0>",
+                  "send": "<function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x7b19a196d580>"
+                }
+              },
+              {
+                "abs_path": "/usr/local/lib/python3.11/site-packages/starlette/routing.py",
+                "context_line": "        await wrap_app_handling_exceptions(app, request)(scope, receive, send)",
+                "filename": "starlette/routing.py",
+                "function": "app",
+                "in_app": false,
+                "lineno": 77,
+                "module": "starlette.routing",
+                "post_context": [
+                  "    return app",
+                  "",
+                  "",
+                  "",
+                  "def websocket_session("
+                ],
+                "pre_context": [
+                  "                response = await func(request)",
+                  "                response = await run_in_threadpool(func, request)",
+                  "            await response(scope, receive, send)",
+                  "            else:",
+                  ""
+                ],
+                "vars": {
+                  "app": "<function request_response.<locals>.app.<locals>.app at 0x7b19a196d800>",
+                  "func": "<function patch_get_request_handler.<locals>._sentry_get_request_handler.<locals>._sentry_app at 0x7b19a3973a60>",
+                  "receive": "<function _enable_span_for_middleware.<locals>._create_span_call.<locals>._sentry_receive at 0x7b19a196e200>",
+                  "request": {
+                    "asgi": {
+                      "spec_version": "'2.4'",
+                      "version": "'3.0'"
+                    },
+                    "client": [
+                      "'172.18.0.1'",
+                      "36560"
+                    ],
+                    "headers": [
+                      [
+                        "b'1'",
+                        "b'dnt'"
+                      ],
+                      [
+                        "b'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36'",
+                        "b'user-agent'"
+                      ],
+                      [
+                        "b'\"Not/A)Brand\";v=\"8\", \"Chromium\";v=\"126\", \"Google Chrome\";v=\"126\"'",
+                        "b'sec-ch-ua'"
+                      ],
+                      [
+                        "b'__client_uat=0'",
+                        "b'cookie'"
+                      ],
+                      [
+                        "b'accept'",
+                        "b'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7'"
+                      ],
+                      [
+                        "b'accept-encoding'",
+                        "b'gzip, deflate, br, zstd'"
+                      ],
+                      [
+                        "b'accept-language'",
+                        "b'en-US,en;q=0.9,id;q=0.8'"
+                      ],
+                      [
+                        "b'cache-control'",
+                        "b'max-age=0'"
+                      ],
+                      [
+                        "b'get.mosaicimg.com'",
+                        "b'host'"
+                      ],
+                      [
+                        "b'priority'",
+                        "b'u=0, i'"
+                      ]
+                    ],
+                    "http_version": "'1.1'",
+                    "method": "'GET'",
+                    "root_path": "''",
+                    "scheme": "'http'",
+                    "server": [
+                      "'172.18.0.2'",
+                      "8000"
+                    ],
+                    "state": {},
+                    "type": "'http'"
+                  },
+                  "scope": {
+                    "asgi": {
+                      "spec_version": "'2.4'",
+                      "version": "'3.0'"
+                    },
+                    "client": [
+                      "'172.18.0.1'",
+                      "36560"
+                    ],
+                    "headers": [
+                      [
+                        "b'1'",
+                        "b'dnt'"
+                      ],
+                      [
+                        "b'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36'",
+                        "b'user-agent'"
+                      ],
+                      [
+                        "b'\"Not/A)Brand\";v=\"8\", \"Chromium\";v=\"126\", \"Google Chrome\";v=\"126\"'",
+                        "b'sec-ch-ua'"
+                      ],
+                      [
+                        "b'__client_uat=0'",
+                        "b'cookie'"
+                      ],
+                      [
+                        "b'accept'",
+                        "b'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7'"
+                      ],
+                      [
+                        "b'accept-encoding'",
+                        "b'gzip, deflate, br, zstd'"
+                      ],
+                      [
+                        "b'accept-language'",
+                        "b'en-US,en;q=0.9,id;q=0.8'"
+                      ],
+                      [
+                        "b'cache-control'",
+                        "b'max-age=0'"
+                      ],
+                      [
+                        "b'get.mosaicimg.com'",
+                        "b'host'"
+                      ],
+                      [
+                        "b'priority'",
+                        "b'u=0, i'"
+                      ]
+                    ],
+                    "http_version": "'1.1'",
+                    "method": "'GET'",
+                    "root_path": "''",
+                    "scheme": "'http'",
+                    "server": [
+                      "'172.18.0.2'",
+                      "8000"
+                    ],
+                    "state": {},
+                    "type": "'http'"
+                  },
+                  "send": "<function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x7b19a196d580>"
+                }
+              }
+            ]
+          },
+          "type": "Exception",
+          "value": "This is a crash"
+        }
+      ]
+    },
+    "extra": {
+      "sys.argv": [
+        "-c",
+        "/usr/local/bin/gunicorn",
+        "app.main:app",
+        "gunicorn.conf.py"
+      ]
+    },
+    "fingerprint": [
+      "{{ default }}"
+    ],
+    "grouping_config": {
+      "enhancements": "KLUv_SAYwQAAkwKRs25ld3N0eWxlOjIwMjMtMDEtMTGQ",
+      "id": "newstyle:2023-01-11"
+    },
+    "hashes": [
+      "f8de39fe22ad7fcf10b77ae9326faa9d",
+      "f8f7164e7317733be5b446a4402ce4c8"
+    ],
+    "id": "2961c6b19def4280977c0f3eeb8355f4",
+    "ingest_path": [
+      {
+        "public_key": "7pLPdtCQBMLtodCJ3yOtI9MDBUWfX0k5eDa4ZP4CX6A",
+        "version": "24.7.1"
+      }
+    ],
+    "key_id": "54274",
+    "level": "error",
+    "location": "app/routes/api/health.py",
+    "logger": "",
+    "metadata": {
+      "display_title_with_tree_label": false,
+      "filename": "app/routes/api/health.py",
+      "function": "get_crash",
+      "in_app_frame_mix": "mixed",
+      "type": "Exception",
+      "value": "This is a crash"
+    },
+    "modules": {
+      "amqp": "5.2.0",
+      "annotated-types": "0.7.0",
+      "anyio": "4.4.0",
+      "appdirs": "1.4.4",
+      "async-timeout": "4.0.3",
+      "attrs": "23.2.0",
+      "autoflake": "2.3.1",
+      "beautifulsoup4": "4.12.3",
+      "billiard": "4.2.0",
+      "boto3": "1.34.140",
+      "botocore": "1.34.140",
+      "bs4": "0.0.2",
+      "cachetools": "5.3.3",
+      "celery": "5.4.0",
+      "certifi": "2024.7.4",
+      "cffi": "1.16.0",
+      "cfgv": "3.4.0",
+      "charset-normalizer": "3.3.2",
+      "click": "8.1.7",
+      "click-didyoumean": "0.3.1",
+      "click-plugins": "1.1.1",
+      "click-repl": "0.3.0",
+      "cryptography": "42.0.8",
+      "deprecation": "2.1.0",
+      "distlib": "0.3.8",
+      "dnspython": "2.6.1",
+      "email_validator": "2.2.0",
+      "exceptiongroup": "1.2.1",
+      "fastapi": "0.111.0",
+      "fastapi-cli": "0.0.4",
+      "filelock": "3.15.4",
+      "gotrue": "2.5.4",
+      "greenlet": "3.0.3",
+      "gunicorn": "22.0.0",
+      "h11": "0.14.0",
+      "hiredis": "2.3.2",
+      "httpcore": "1.0.5",
+      "httptools": "0.6.1",
+      "httpx": "0.27.0",
+      "identify": "2.5.36",
+      "idna": "3.7",
+      "importlib_metadata": "8.0.0",
+      "isort": "5.13.2",
+      "jinja2": "3.1.4",
+      "jmespath": "1.0.1",
+      "kombu": "5.3.7",
+      "mako": "1.3.5",
+      "markdown-it-py": "3.0.0",
+      "markupsafe": "2.1.5",
+      "mdurl": "0.1.2",
+      "nodeenv": "1.9.1",
+      "orjson": "3.10.6",
+      "outcome": "1.3.0.post0",
+      "packaging": "24.1",
+      "pip": "22.3.1",
+      "platformdirs": "4.2.2",
+      "playwright": "1.45.0",
+      "postgrest": "0.16.8",
+      "pre-commit": "3.7.1",
+      "prompt_toolkit": "3.0.47",
+      "psycopg2-binary": "2.9.9",
+      "pycparser": "2.22",
+      "pydantic": "2.8.2",
+      "pydantic_core": "2.20.1",
+      "pyee": "11.1.0",
+      "pyflakes": "3.2.0",
+      "pygments": "2.18.0",
+      "pyjwt": "2.8.0",
+      "pysocks": "1.7.1",
+      "python-dateutil": "2.9.0.post0",
+      "python-dotenv": "1.0.1",
+      "python-multipart": "0.0.9",
+      "pyyaml": "6.0.1",
+      "realtime": "1.0.6",
+      "redis": "5.0.7",
+      "requests": "2.32.3",
+      "rich": "13.7.1",
+      "ruff": "0.5.0",
+      "s3transfer": "0.10.2",
+      "sentry-sdk": "2.10.0",
+      "setuptools": "65.5.1",
+      "shellingham": "1.5.4",
+      "six": "1.16.0",
+      "sniffio": "1.3.1",
+      "sortedcontainers": "2.4.0",
+      "soupsieve": "2.5",
+      "sqlalchemy": "2.0.31",
+      "sqlmodel": "0.0.19",
+      "starlette": "0.37.2",
+      "storage3": "0.7.6",
+      "strenum": "0.4.15",
+      "supabase": "2.5.1",
+      "supafunc": "0.4.6",
+      "tomli": "2.0.1",
+      "tqdm": "4.66.4",
+      "trio": "0.26.0",
+      "trio-websocket": "0.11.1",
+      "typer": "0.12.3",
+      "typing_extensions": "4.12.2",
+      "tzdata": "2024.1",
+      "ujson": "5.10.0",
+      "urllib3": "1.26.19",
+      "uvicorn": "0.30.1",
+      "uvloop": "0.19.0",
+      "vine": "5.1.0",
+      "virtualenv": "20.26.3",
+      "watchfiles": "0.22.0",
+      "wcwidth": "0.2.13",
+      "websocket-client": "1.8.0",
+      "websockets": "12.0",
+      "wheel": "0.40.0",
+      "wsproto": "1.2.0",
+      "zipp": "3.19.2"
+    },
+    "nodestore_insert": 1722019468.561262,
+    "platform": "python",
+    "project": 4507627517116496,
+    "received": 1722019467.086847,
+    "release": "5e70f9873653d82d3a2394bf7797341bb1938c21",
+    "request": {
+      "headers": [
+        [
+          "",
+          "X-Forwarded-For"
+        ],
+        [
+          "",
+          "X-Real-Ip"
+        ],
+        [
+          "1",
+          "Dnt"
+        ],
+        [
+          "1",
+          "Upgrade-Insecure-Requests"
+        ],
+        [
+          "?0",
+          "Sec-Ch-Ua-Mobile"
+        ],
+        [
+          "?1",
+          "Sec-Fetch-User"
+        ],
+        [
+          "Accept",
+          "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7"
+        ],
+        [
+          "Accept-Encoding",
+          "gzip, deflate, br, zstd"
+        ],
+        [
+          "Accept-Language",
+          "en-US,en;q=0.9,id;q=0.8"
+        ],
+        [
+          "Cache-Control",
+          "max-age=0"
+        ],
+        [
+          "Cookie",
+          "[Filtered]"
+        ],
+        [
+          "Host",
+          "get.mosaicimg.com"
+        ],
+        [
+          "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+          "User-Agent"
+        ],
+        [
+          "Priority",
+          "u=0, i"
+        ],
+        [
+          "Sec-Ch-Ua",
+          "\"Not/A)Brand\";v=\"8\", \"Chromium\";v=\"126\", \"Google Chrome\";v=\"126\""
+        ],
+        [
+          "Sec-Ch-Ua-Platform",
+          "\"macOS\""
+        ],
+        [
+          "Sec-Fetch-Dest",
+          "document"
+        ],
+        [
+          "Sec-Fetch-Mode",
+          "navigate"
+        ],
+        [
+          "Sec-Fetch-Site",
+          "none"
+        ],
+        [
+          "X-Forwarded-Host",
+          "get.mosaicimg.com"
+        ],
+        [
+          "X-Forwarded-Proto",
+          "https"
+        ]
+      ],
+      "method": "GET",
+      "query_string": [
+        [
+          "5e70f9873653d82d3a2394bf7797341bb1938c21",
+          "query"
+        ]
+      ],
+      "url": "http://get.mosaicimg.com/api/health/crash"
+    },
+    "sdk": {
+      "integrations": [
+        "argv",
+        "atexit",
+        "boto3",
+        "celery",
+        "dedupe",
+        "excepthook",
+        "fastapi",
+        "httpx",
+        "logging",
+        "modules",
+        "redis",
+        "sqlalchemy",
+        "starlette",
+        "stdlib",
+        "threading"
+      ],
+      "name": "sentry.python.fastapi",
+      "packages": [
+        {
+          "name": "pypi:sentry-sdk",
+          "version": "2.10.0"
+        }
+      ],
+      "version": "2.10.0"
+    },
+    "tags": [
+      [
+        "/api/health/crash",
+        "transaction"
+      ],
+      [
+        "37badc8d0010",
+        "server_name"
+      ],
+      [
+        "5e70f9873653d82d3a2394bf7797341bb1938c21",
+        "git.commit"
+      ],
+      [
+        "5e70f9873653d82d3a2394bf7797341bb1938c21",
+        "sentry:release"
+      ],
+      [
+        "CPython 3.11.2",
+        "runtime"
+      ],
+      [
+        "CPython",
+        "runtime.name"
+      ],
+      [
+        "Google Chrome 126",
+        "browser"
+      ],
+      [
+        "Google Chrome",
+        "browser.name"
+      ],
+      [
+        "Mac",
+        "device"
+      ],
+      [
+        "Mac",
+        "device.family"
+      ],
+      [
+        "client_os.name",
+        "macOS"
+      ],
+      [
+        "environment",
+        "production"
+      ],
+      [
+        "error",
+        "level"
+      ],
+      [
+        "handled",
+        "no"
+      ],
+      [
+        "http://get.mosaicimg.com/api/health/crash",
+        "url"
+      ],
+      [
+        "mechanism",
+        "starlette"
+      ]
+    ],
+    "timestamp": 1722019467.044939,
+    "title": "Exception: This is a crash",
+    "transaction": "/api/health/crash",
+    "transaction_info": {
+      "source": "route"
+    },
+    "type": "error",
+    "version": "7"
+  },
+  "id": "3297124",
+  "level": "error",
+  "logger": null,
+  "message": "",
+  "project": "mosaic-backend",
+  "project_name": "mosaic-backend",
+  "project_slug": "mosaic-backend",
+  "triggering_rules": [
+    "Send a notification for new issues"
+  ],
+  "url": "https://mosaicimg.sentry.io/issues/3297124/?referrer=webhooks_plugin"
+}
