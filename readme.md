@@ -78,6 +78,9 @@ To test the webhook, you can use a tool like `curl` or Postman to send a POST re
 curl -X POST "http://localhost:8000/sentry-webhook" -H "Content-Type: application/json" -d @samples/alert.json
 ```
 
+This should trigger a notification to your Slack channel.
+![Slack Alert Example](screenshots/slack-alert-example.png)
+
 ### Deploying the Application on Koyeb
 
 Koyeb is a simple and efficient platform to deploy your applications. Follow these steps to deploy your FastAPI application on Koyeb:
@@ -113,7 +116,9 @@ Koyeb is a simple and efficient platform to deploy your applications. Follow the
     - Once the deployment is complete, you will be provided with a URL to access your application.
     - Open your browser and navigate to the provided URL to verify that your FastAPI application is running.
 
+Here is a screenshot to help you with the deployment process on Koyeb:
+![Koyeb Configuration Screen](screenshots/koyeb-config-example.png)
+
 For more information on deploying applications with Koyeb, refer to the [Koyeb documentation](https://www.koyeb.com/docs/).
 
 
-For more information on deploying applications with Fly.io, refer to the [Fly.io documentation](https://fly.io/docs/).
