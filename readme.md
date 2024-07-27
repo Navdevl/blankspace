@@ -78,42 +78,42 @@ To test the webhook, you can use a tool like `curl` or Postman to send a POST re
 curl -X POST "http://localhost:8000/sentry-webhook" -H "Content-Type: application/json" -d @samples/alert.json
 ```
 
-#### Deploying to Fly.io
+### Deploying the Application on Koyeb
 
-Fly.io is a platform for running full-stack apps and databases close to your users. Follow these steps to deploy your FastAPI application to Fly.io:
+Koyeb is a simple and efficient platform to deploy your applications. Follow these steps to deploy your FastAPI application on Koyeb:
 
-1. **Install Flyctl**:
-    Flyctl is the command-line tool for interacting with Fly.io. You can install it using the following command:
-    ```sh
-    curl -L https://fly.io/install.sh | sh
-    ```
+1. **Create a Koyeb Account**:
+    - Go to the [Koyeb website](https://www.koyeb.com/) and sign up for an account.
 
-2. **Sign in to Fly.io**:
-    If you don't have a Fly.io account, you can sign up for one. Then, sign in using Flyctl:
-    ```sh
-    flyctl auth login
-    ```
+2. **Create a New App**:
+    - Once logged in, click on the "Create App" button.
+    - Select "GitHub" as the deployment source and connect your GitHub account.
+    - Choose the repository containing your FastAPI application.
 
-3. **Create and configure a new Fly.io application**:
-    Initialize a new Fly.io application in your project directory:
-    ```sh
-    flyctl launch
-    ```
-    Follow the prompts to set up your application. This will create a `fly.toml` configuration file in your project directory.
+3. **Configure the Build Settings**:
+    - In the "Build Settings" section, select the appropriate branch to deploy.
+    - In the "Builder", select "Dockerfile" as the build type.
+    - Set the Dockerfile path to:
+      ```sh
+      ./Dockerfile
+      ```
 
-4. **Set environment variables**:
-    You need to set the `SLACK_WEBHOOK_URL` environment variable in Fly.io. You can do this using the following command:
-    ```sh
-    flyctl secrets set SLACK_WEBHOOK_URL=YOUR_WEBHOOK_URL
-    ```
+4. **Set Environment Variables**:
+    - In the "Environment Variables" section.
+    - Add the `SLACK_WEBHOOK_URL` environment variable. You can have it as plain text or secret:
+      ```sh
+      SLACK_WEBHOOK_URL=YOUR_WEBHOOK_URL
+      ```
 
-5. **Deploy your application**:
-    Deploy your FastAPI application to Fly.io using the following command:
-    ```sh
-    flyctl deploy
-    ```
+5. **Deploy the Application**:
+    - Click on the "Deploy" button to start the deployment process.
+    - Wait for the deployment to complete. You can monitor the progress in the deployment logs.
 
-6. **Access your deployed application**:
-    Once the deployment is complete, Fly.io will provide you with a URL where your application is accessible. You can visit this URL in your browser to see your running application.
+6. **Verify the Deployment**:
+    - Once the deployment is complete, you will be provided with a URL to access your application.
+    - Open your browser and navigate to the provided URL to verify that your FastAPI application is running.
+
+For more information on deploying applications with Koyeb, refer to the [Koyeb documentation](https://www.koyeb.com/docs/).
+
 
 For more information on deploying applications with Fly.io, refer to the [Fly.io documentation](https://fly.io/docs/).
